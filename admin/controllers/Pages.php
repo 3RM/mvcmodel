@@ -1,7 +1,7 @@
 <?php
 
 if(isset($_GET['action'])){
-    $data['login'] = "user7";
+    $data['login'] = "user8";
     $data['password'] = "user712345";
 //    spl_autoload_register(function ($class_name) {
 //        require_once '../admin/models/'.$class_name.'.php';

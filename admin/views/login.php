@@ -1,3 +1,20 @@
+<?php
+if(isset($_POST['login_submit'])){
+//    spl_autoload_register(function ($class_name) {
+//        include 'models/'.$class_name.'.php';
+//    });
+    $params = array();
+    $params['login'] = filter_input(INPUT_POST,'login');
+    $params['password'] = filter_input(INPUT_POST,'password');
+    $data = new Select("users");
+    $result = $data->getRecordWithParam($params);
+    if(count($result) > 1){
+        $_SESSION['admin'] = $result['login'];
+        //header("Location: index.php");
+        echo "<META HTTP-EQUIV='REFRESH' CONTENT='0';URL=''>";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -125,18 +142,3 @@
 
 </body>
 </html>
-<?php
-if(isset($_POST['login_submit'])){
-    spl_autoload_register(function ($class_name) {
-        include 'models/'.$class_name.'.php';
-    });
-    $params = array();
-    $params['login'] = filter_input(INPUT_POST,'login');
-    $params['password'] = filter_input(INPUT_POST,'password');
-    $data = new Select("users");
-    $result = $data->getRecordWithParam($params);
-    echo count($result);
-    if(count($result) > 1){
-        $_SESSION['admin'] = $result['login'];
-    }
-}

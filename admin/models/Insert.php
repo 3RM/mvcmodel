@@ -24,12 +24,13 @@ class Insert extends Database{
     
     public function insertData(){
         $query = "INSERT INTO $this->tablename";
-        foreach($this->data as $key=>$value){
-            $keys[] = $key;
-            $values[] = $value;
-        }
-        $query .= "(".implode($keys, ",").") VALUES";
-        $query .= "('".implode($values, "','")."')";
-        $this->connectToDb()->query($query);
+//        foreach($this->data as $key=>$value){
+//            $keys[] = $key;
+//            $values[] = $value;
+//        }
+        $query .= "(".implode(array_keys($this->data), ",").") VALUES";
+        $query .= "('".implode(array_values($this->data), "','")."')";
+        echo $query;
+        $this->connectToDb()->query($query);        
     }
 }
